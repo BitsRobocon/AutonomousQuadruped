@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>quadruped</name>
+  <version>0.0.0</version>
+  <description>This repository contains all the code for the autonomous quadruped being developed by the team.</description>
+  <maintainer email="ashutoshshrm529@gmail.com">ashutoshshrm529</maintainer>
+  <maintainer email="ekanshgupta92@gmail.com">ekanshgupta92</maintainer>
+  <maintainer email="mehuljain.jaipur@gmail.com">Damn-It-Tech</maintainer>
+  <maintainer email="archit.mudugu2802@gmail.com">archit2802</maintainer>
+  <maintainer email="bhavika.gopalani@gmail.com">bhavika-g</maintainer>
+  <license>Apache License 2.0</license>
+
+  <exec_depend>quadruped_interfaces</exec_depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
