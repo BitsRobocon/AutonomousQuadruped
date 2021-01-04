@@ -43,12 +43,6 @@ NUM_SIMULATION_ITERATION_STEPS = 300
 
 MINIATUR_URDF_VERSION_MAP = {DEFAULT_URDF_VERSION: minitaur.Minitaur}
 
-register(
-    id="SpotMicroEnv-v0",
-    entry_point='spotmicro.spot_gym_env:spotGymEnv',
-    max_episode_steps=1000,
-)
-
 # Register as OpenAI Gym Environment
 def convert_to_list(obj):
   try:
