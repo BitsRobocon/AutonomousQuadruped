@@ -20,7 +20,6 @@ import pybullet
 from pybullet_utils import bullet_client as bc
 import pybullet_data
 from pkg_resources import parse_version
-from gym.envs.registration import register
 
 from pybullet_envs.minitaur.envs import minitaur
 from pybullet_envs.minitaur.envs import minitaur_logging

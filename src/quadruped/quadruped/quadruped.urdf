@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot
+  name="quadruped">
+  <link
+    name="base_link">
+<inertial>
+<mass value="1.0"/>
+<inertia ixx="0.015" iyy="0.0375" izz="0.0375"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="0 0 0.35"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/base_link_rsz.stl" />
+      </geometry>
+      <material
+        name="White">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.35"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/base_link_rsz.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="leftback">
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="-0.1 -0.283 -0.381"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/leftbackleg_rsz.stl" />
+      </geometry>
+      <material
+        name="Black">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="-0.1 -0.283 -0.381"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/leftbackleg_rsz.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leftback_joint"
+    type="revolute">
+    <origin
+        xyz="0.1 0.273 0.35"
+        rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="leftback" />
+    <limit 
+      lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
+    <dynamics damping="0.5"/>
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="leftfront">
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="-0.1 0.080 -0.35"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/leftfrontleg_rsz.stl" />
+      </geometry>
+      <material
+        name="Black">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="-0.1 0.080 -0.35"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/leftfrontleg_rsz.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leftfront_joint"
+    type="revolute">
+    <origin
+        xyz="0.1 -0.075 0.35"
+        rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="leftfront" />
+    <limit 
+      lower="-0.7848" upper="0.78" effort="0.1" velocity="0.1"/>
+    <dynamics damping="0.5"/>
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="rightback">
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="0.1 -0.283 -0.35"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/rightbackleg_rsz.stl" />
+      </geometry>
+      <material
+        name="Black">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.1 -0.283 -0.35"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/rightbackleg_rsz.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rightback_joint"
+    type="revolute">
+    <origin
+        xyz="-0.1 0.273 0.35"
+        rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rightback" />
+    <limit 
+      lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
+    <dynamics damping="0.5"/>
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="rightfront">
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="0.1 0.080 -0.35"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/rightfrontleg_rsz.stl" />
+      </geometry>
+      <material
+        name="Black">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.1 0.080 -0.35"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/rightfrontleg_rsz.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rightfront_joint"
+    type="revolute">
+    <origin
+        xyz="-0.1 -0.075 0.35"
+        rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rightfront" />
+    <limit 
+      lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
+    <dynamics damping="0.5"/>
+    <axis
+      xyz="1 0 0" />
+  </joint>
+ <!-- Gazebo reference frame -->
+  <transmission name="leftback_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leftback_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leftback_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="leftfront_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="leftfront_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="leftfront_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="rightback_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rightback_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rightback_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="rightfront_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rightfront_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rightfront_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <gazebo>
+    <plugin name="control" filename="libgazebo_ros_control.so"/>
+  </gazebo>
+  <gazebo>
+    <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+      <jointName>leftback_joint, leftfront_joint, rightback_joint, rightfront_joint</jointName>
+    </plugin>
+  </gazebo>
+</robot>

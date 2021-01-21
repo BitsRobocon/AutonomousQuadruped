@@ -5,8 +5,8 @@
 import time
 import math
 import numpy as np
-import plotView3d as view3d
-import fourLegSimulator as fls
+from . import plotView3d as view3d
+from . import fourLegSimulator as fls
 
 class BezierPoints():
     def __init__(self):
