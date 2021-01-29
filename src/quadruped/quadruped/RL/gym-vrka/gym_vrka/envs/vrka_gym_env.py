@@ -19,12 +19,13 @@ from gym import spaces
 from gym.utils import seeding
 from pkg_resources import parse_version
 import pybullet_utils.bullet_client as bullet_client
-from . import HeightField
-# Files below are yet to be added 
-from . import spot
-from . import BezierStepper
-import spotmicro.Kinematics.LieAlgebra as LA
-from . import SpotEnvRandomizer
+from gym.envs.registration import register
+from .heightfield import HeightField
+from . import LieAlgebra as LA
+from .vrka_env_randomizer import VrkaEnvRandomizer
+
+from spotmicro.OpenLoopSM.SpotOL import BezierStepper
+from spotmicro import spot
 
 NUM_SUBSTEPS = 5
 NUM_MOTORS = 12
@@ -41,6 +42,14 @@ DEFAULT_URDF_VERSION = "default"
 NUM_SIMULATION_ITERATION_STEPS = 1000
 
 spot_URDF_VERSION_MAP = {DEFAULT_URDF_VERSION: spot.Spot}
+
+# Register as OpenAI Gym Environment
+register(
+    id="SpotMicroEnv-v0",
+    entry_point='spotmicro.spot_gym_env:spotGymEnv',
+    max_episode_steps=1000,
+)
+
 
 def convert_to_list(obj):
     try:
@@ -93,7 +102,7 @@ class spotGymEnv(gym.Env):
                  num_steps_to_log=1000,
                  action_repeat=1,
                  control_time_step=None,
-                 env_randomizer=SpotEnvRandomizer(),
+                 env_randomizer=VrkaEnvRandomizer(),
                  forward_reward_cap=float("inf"),
                  reflection=True,
                  log_path=None,
