@@ -24,7 +24,7 @@ from . import LieAlgebra as LA
 
 from .vrka_env_randomizer import VrkaEnvRandomizer
 # Files below are yet to be added 
-from . import spot
+from . import vrka
 from . import BezierStepper
 
 NUM_SUBSTEPS = 5
@@ -37,11 +37,11 @@ ACTION_EPS = 0.01
 OBSERVATION_EPS = 0.01
 RENDER_HEIGHT = 720
 RENDER_WIDTH = 960
-SENSOR_NOISE_STDDEV = spot.SENSOR_NOISE_STDDEV
+SENSOR_NOISE_STDDEV = vrka.SENSOR_NOISE_STDDEV
 DEFAULT_URDF_VERSION = "default"
 NUM_SIMULATION_ITERATION_STEPS = 1000
 
-spot_URDF_VERSION_MAP = {DEFAULT_URDF_VERSION: spot.Spot}
+vrka_URDF_VERSION_MAP = {DEFAULT_URDF_VERSION: vrka.Spot}
 
 def convert_to_list(obj):
     try:
@@ -51,12 +51,12 @@ def convert_to_list(obj):
         return [obj]
 
 
-class spotGymEnv(gym.Env):
-    """The gym environment for spot.
-  It simulates the locomotion of spot, a quadruped robot. The state space
+class vrkaGymEnv(gym.Env):
+    """The gym environment for vrka.
+  It simulates the locomotion of vrka, a quadruped robot. The state space
   include the angles, velocities and torques for all the motors and the action
   space is the desired motor angle for each motor. The reward function is based
-  on how far spot walks in 1000 steps and penalizes the energy
+  on how far vrka walks in 1000 steps and penalizes the energy
   expenditure.
   """
     metadata = {
@@ -106,7 +106,7 @@ class spotGymEnv(gym.Env):
                  height_field_iters=2,
                  AutoStepper=False,
                  contacts=True):
-        """Initialize the spot gym environment.
+        """Initialize the vrka gym environment.
     Args:
       urdf_root: The path to the urdf data folder.
       urdf_version: [DEFAULT_URDF_VERSION] are allowable
@@ -138,13 +138,13 @@ class spotGymEnv(gym.Env):
         False, pose control will be used.
       motor_overheat_protection: Whether to shutdown the motor that has exerted
         large torque (OVERHEAT_SHUTDOWN_TORQUE) for an extended amount of time
-        (OVERHEAT_SHUTDOWN_TIME). See ApplyAction() in spot.py for more
+        (OVERHEAT_SHUTDOWN_TIME). See ApplyAction() in vrka.py for more
         details.
       hard_reset: Whether to wipe the simulation and load everything when reset
-        is called. If set to false, reset just place spot back to start
+        is called. If set to false, reset just place vrka back to start
         position and set its pose to initial configuration.
-      on_rack: Whether to place spot on rack. This is only used to debug
-        the walking gait. In this mode, spot's base is hanged midair so
+      on_rack: Whether to place vrka on rack. This is only used to debug
+        the walking gait. In this mode, vrka's base is hanged midair so
         that its walking gait is clearer to visualize.
       render: Whether to render the simulation.
       num_steps_to_log: The max number of control steps in one episode that will
@@ -154,12 +154,12 @@ class spotGymEnv(gym.Env):
       action_repeat: The number of simulation steps before actions are applied.
       control_time_step: The time step between two successive control signals.
       env_randomizer: An instance (or a list) of EnvRandomizer(s). An
-        EnvRandomizer may randomize the physical property of spot, change
+        EnvRandomizer may randomize the physical property of vrka, change
           the terrrain during reset(), or add perturbation forces during step().
       forward_reward_cap: The maximum value that forward reward is capped at.
         Disabled (Inf) by default.
       log_path: The path to write out logs. For the details of logging, refer to
-        spot_logging.proto.
+        vrka_logging.proto.
     Raises:
       ValueError: If the urdf_version is not supported.
     """
@@ -262,9 +262,9 @@ class spotGymEnv(gym.Env):
         # Only update after HF has been generated
         self.height_field = False
         self.reset()
-        observation_high = (self.spot.GetObservationUpperBound() +
+        observation_high = (self.vrka.GetObservationUpperBound() +
                             OBSERVATION_EPS)
-        observation_low = (self.spot.GetObservationLowerBound() -
+        observation_low = (self.vrka.GetObservationLowerBound() -
                            OBSERVATION_EPS)
         action_dim = NUM_MOTORS
         action_high = np.array([self._action_bound] * action_dim)
@@ -316,11 +316,11 @@ class spotGymEnv(gym.Env):
             self._pybullet_client.setGravity(0, 0, -9.81)
             acc_motor = self._accurate_motor_model_enabled
             motor_protect = self._motor_overheat_protection
-            if self._urdf_version not in spot_URDF_VERSION_MAP:
+            if self._urdf_version not in vrka_URDF_VERSION_MAP:
                 raise ValueError("%s is not a supported urdf_version." %
                                  self._urdf_version)
             else:
-                self.spot = (spot_URDF_VERSION_MAP[self._urdf_version](
+                self.vrka = (vrka_URDF_VERSION_MAP[self._urdf_version](
                     pybullet_client=self._pybullet_client,
                     action_repeat=self._action_repeat,
                     urdf_root=self._urdf_root,
@@ -341,7 +341,7 @@ class spotGymEnv(gym.Env):
                     on_rack=self._on_rack,
                     np_random=self.np_random,
                     contacts=self.contacts))
-        self.spot.Reset(reload_urdf=False,
+        self.vrka.Reset(reload_urdf=False,
                         default_motor_angles=initial_motor_angles,
                         reset_time=reset_duration)
 
@@ -379,7 +379,7 @@ class spotGymEnv(gym.Env):
                         self._action_bound + ACTION_EPS):
                     raise ValueError("{}th action {} out of bounds.".format(
                         i, action_component))
-            action = self.spot.ConvertFromLegModel(action)
+            action = self.vrka.ConvertFromLegModel(action)
         return action
 
     def step(self, action):
@@ -395,8 +395,8 @@ class spotGymEnv(gym.Env):
       ValueError: The action dimension is not the same as the number of motors.
       ValueError: The magnitude of actions is out of bounds.
     """
-        self._last_base_position = self.spot.GetBasePosition()
-        self._last_base_orientation = self.spot.GetBaseOrientation()
+        self._last_base_position = self.vrka.GetBasePosition()
+        self._last_base_orientation = self.vrka.GetBaseOrientation()
         # print("ACTION:")
         # print(action)
         if self._is_render:
@@ -407,7 +407,7 @@ class spotGymEnv(gym.Env):
             time_to_sleep = self.control_time_step - time_spent
             if time_to_sleep > 0:
                 time.sleep(time_to_sleep)
-            base_pos = self.spot.GetBasePosition()
+            base_pos = self.vrka.GetBasePosition()
             # Keep the previous orientation of the camera set by the user.
             [yaw, pitch,
              dist] = self._pybullet_client.getDebugVisualizerCamera()[8:11]
@@ -415,7 +415,7 @@ class spotGymEnv(gym.Env):
                 dist, yaw, pitch, base_pos)
 
         action = self._transform_action_to_motor_command(action)
-        self.spot.Step(action)
+        self.vrka.Step(action)
         reward = self._reward()
         done = self._termination()
         self._env_step_counter += 1
@@ -428,7 +428,7 @@ class spotGymEnv(gym.Env):
     def render(self, mode="rgb_array", close=False):
         if mode != "rgb_array":
             return np.array([])
-        base_pos = self.spot.GetBasePosition()
+        base_pos = self.vrka.GetBasePosition()
         view_matrix = self._pybullet_client.computeViewMatrixFromYawPitchRoll(
             cameraTargetPosition=base_pos,
             distance=self._cam_dist,
@@ -453,14 +453,14 @@ class spotGymEnv(gym.Env):
 
     def DrawFootPath(self):
         # Get Foot Positions
-        FL = self._pybullet_client.getLinkState(self.spot.quadruped,
-                                                self.spot._foot_id_list[0])[0]
-        FR = self._pybullet_client.getLinkState(self.spot.quadruped,
-                                                self.spot._foot_id_list[1])[0]
-        BL = self._pybullet_client.getLinkState(self.spot.quadruped,
-                                                self.spot._foot_id_list[2])[0]
-        BR = self._pybullet_client.getLinkState(self.spot.quadruped,
-                                                self.spot._foot_id_list[3])[0]
+        FL = self._pybullet_client.getLinkState(self.vrka.quadruped,
+                                                self.vrka._foot_id_list[0])[0]
+        FR = self._pybullet_client.getLinkState(self.vrka.quadruped,
+                                                self.vrka._foot_id_list[1])[0]
+        BL = self._pybullet_client.getLinkState(self.vrka.quadruped,
+                                                self.vrka._foot_id_list[2])[0]
+        BR = self._pybullet_client.getLinkState(self.vrka.quadruped,
+                                                self.vrka._foot_id_list[3])[0]
 
         lifetime = 3.0  # sec
         self._pybullet_client.addUserDebugLine(self.prev_feet_path[0],
@@ -481,8 +481,8 @@ class spotGymEnv(gym.Env):
         self.prev_feet_path[2] = BL
         self.prev_feet_path[3] = BR
 
-    def get_spot_motor_angles(self):
-        """Get the spot's motor angles.
+    def get_vrka_motor_angles(self):
+        """Get the vrka's motor angles.
     Returns:
       A numpy array of motor angles.
     """
@@ -490,8 +490,8 @@ class spotGymEnv(gym.Env):
             self._observation[MOTOR_ANGLE_OBSERVATION_INDEX:
                               MOTOR_ANGLE_OBSERVATION_INDEX + NUM_MOTORS])
 
-    def get_spot_motor_velocities(self):
-        """Get the spot's motor velocities.
+    def get_vrka_motor_velocities(self):
+        """Get the vrka's motor velocities.
     Returns:
       A numpy array of motor velocities.
     """
@@ -499,8 +499,8 @@ class spotGymEnv(gym.Env):
             self._observation[MOTOR_VELOCITY_OBSERVATION_INDEX:
                               MOTOR_VELOCITY_OBSERVATION_INDEX + NUM_MOTORS])
 
-    def get_spot_motor_torques(self):
-        """Get the spot's motor torques.
+    def get_vrka_motor_torques(self):
+        """Get the vrka's motor torques.
     Returns:
       A numpy array of motor torques.
     """
@@ -508,30 +508,30 @@ class spotGymEnv(gym.Env):
             self._observation[MOTOR_TORQUE_OBSERVATION_INDEX:
                               MOTOR_TORQUE_OBSERVATION_INDEX + NUM_MOTORS])
 
-    def get_spot_base_orientation(self):
-        """Get the spot's base orientation, represented by a quaternion.
+    def get_vrka_base_orientation(self):
+        """Get the vrka's base orientation, represented by a quaternion.
     Returns:
-      A numpy array of spot's orientation.
+      A numpy array of vrka's orientation.
     """
         return np.array(self._observation[BASE_ORIENTATION_OBSERVATION_INDEX:])
 
     def is_fallen(self):
-        """Decide whether spot has fallen.
+        """Decide whether vrka has fallen.
     If the up directions between the base and the world is larger (the dot
     product is smaller than 0.85) or the base is very low on the ground
-    (the height is smaller than 0.13 meter), spot is considered fallen.
+    (the height is smaller than 0.13 meter), vrka is considered fallen.
     Returns:
-      Boolean value that indicates whether spot has fallen.
+      Boolean value that indicates whether vrka has fallen.
     """
-        orientation = self.spot.GetBaseOrientation()
+        orientation = self.vrka.GetBaseOrientation()
         rot_mat = self._pybullet_client.getMatrixFromQuaternion(orientation)
         local_up = rot_mat[6:]
-        pos = self.spot.GetBasePosition()
+        pos = self.vrka.GetBasePosition()
         #  or pos[2] < 0.13
         return (np.dot(np.asarray([0, 0, 1]), np.asarray(local_up)) < 0.55)
 
     def _termination(self):
-        position = self.spot.GetBasePosition()
+        position = self.vrka.GetBasePosition()
         distance = math.sqrt(position[0]**2 + position[1]**2)
         return self.is_fallen() or distance > self._distance_limit
 
@@ -544,7 +544,7 @@ class spotGymEnv(gym.Env):
         SPIN: acc(x) = 0, rate(x,y) = 0, rate (z) = rate reference
         Also include drift, energy vanilla rewards
         """
-        current_base_position = self.spot.GetBasePosition()
+        current_base_position = self.vrka.GetBasePosition()
 
         # get observation
         obs = self._get_observation()
@@ -552,8 +552,8 @@ class spotGymEnv(gym.Env):
 
         # # POSITIVE FOR FORWARD, NEGATIVE FOR BACKWARD | NOTE: HIDDEN
         # GETTING TWIST IN BODY FRAME
-        pos = self.spot.GetBasePosition()
-        orn = self.spot.GetBaseOrientation()
+        pos = self.vrka.GetBasePosition()
+        orn = self.vrka.GetBaseOrientation()
         roll, pitch, yaw = self._pybullet_client.getEulerFromQuaternion(
             [orn[0], orn[1], orn[2], orn[3]])
         rpy = LA.RPY(roll, pitch, yaw)
@@ -563,15 +563,15 @@ class spotGymEnv(gym.Env):
         Adj_Tbw = LA.Adjoint(T_bw)
 
         Vw = np.concatenate(
-            (self.spot.prev_ang_twist, self.spot.prev_lin_twist))
+            (self.vrka.prev_ang_twist, self.vrka.prev_lin_twist))
         Vb = np.dot(Adj_Tbw, Vw)
 
         # New Twist in Body Frame
         # POSITIVE FOR FORWARD, NEGATIVE FOR BACKWARD | NOTE: HIDDEN
         fwd_speed = -Vb[3]  # vx
         lat_speed = -Vb[4]  # vy
-        # fwd_speed = self.spot.prev_lin_twist[0]
-        # lat_speed = self.spot.prev_lin_twist[1]
+        # fwd_speed = self.vrka.prev_lin_twist[0]
+        # lat_speed = self.vrka.prev_lin_twist[1]
         # print("FORWARD SPEED: {} \t STATE SPEED: {}".format(
         #     fwd_speed, self.desired_velocity))
         # self.desired_velocity = 0.4
@@ -627,8 +627,8 @@ class spotGymEnv(gym.Env):
         #                     self._last_base_position[2])
         self._last_base_position = current_base_position
         energy_reward = -np.abs(
-            np.dot(self.spot.GetMotorTorques(),
-                   self.spot.GetMotorVelocities())) * self._time_step
+            np.dot(self.vrka.GetMotorTorques(),
+                   self.vrka.GetMotorVelocities())) * self._time_step
         reward = (self._distance_weight * forward_reward +
                   self._rotation_weight * rot_reward +
                   self._energy_weight * energy_reward +
@@ -655,7 +655,7 @@ class spotGymEnv(gym.Env):
 
     def _get_observation(self):
         """Get observation of this environment, including noise and latency.
-    spot class maintains a history of true observations. Based on the
+    vrka class maintains a history of true observations. Based on the
     latency, this function will find the observation at the right time,
     interpolate if necessary. Then Gaussian noise is added to this observation
     based on self.observation_noise_stdev.
@@ -663,7 +663,7 @@ class spotGymEnv(gym.Env):
       The noisy observation with latency.
     """
 
-        self._observation = self.spot.GetObservation()
+        self._observation = self.vrka.GetObservation()
         return self._observation
 
     def _get_realistic_observation(self):
@@ -674,7 +674,7 @@ class spotGymEnv(gym.Env):
       are motor velocities, observation[16:24] are motor torques.
       observation[24:28] is the orientation of the base, in quaternion form.
     """
-        self._observation = self.spot.RealisticObservation()
+        self._observation = self.vrka.RealisticObservation()
         return self._observation
 
     if parse_version(gym.__version__) < parse_version('0.9.6'):
@@ -706,7 +706,7 @@ class spotGymEnv(gym.Env):
         self._pybullet_client.setPhysicsEngineParameter(
             numSolverIterations=self._num_bullet_solver_iterations)
         self._pybullet_client.setTimeStep(self._time_step)
-        self.spot.SetTimeSteps(action_repeat=self._action_repeat,
+        self.vrka.SetTimeSteps(action_repeat=self._action_repeat,
                                simulation_step=self._time_step)
 
     @property
