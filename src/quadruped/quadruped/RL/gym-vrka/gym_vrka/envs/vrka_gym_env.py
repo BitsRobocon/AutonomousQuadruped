@@ -19,7 +19,7 @@ from gym import spaces
 from gym.utils import seeding
 from pkg_resources import parse_version
 import pybullet_utils.bullet_client as bullet_client
-# from gym.envs.registration import register
+from gym.envs.registration import register
 from .heightfield import HeightField
 from . import LieAlgebra as LA
 from .vrka_env_randomizer import VrkaEnvRandomizer
@@ -43,11 +43,11 @@ NUM_SIMULATION_ITERATION_STEPS = 1000
 vrka_URDF_VERSION_MAP = {DEFAULT_URDF_VERSION: vrka.vrka}
 
 # Register as OpenAI Gym Environment
-# register(
-#     id="SpotMicroEnv-v0",
-#     entry_point='vrkamicro.vrka_gym_env:vrkaGymEnv',
-#     max_episode_steps=1000,
-# )
+register(
+    id="SpotMicroEnv-v0",
+    entry_point='vrkamicro.vrka_gym_env:vrkaGymEnv',
+    max_episode_steps=1000,
+)
 
 
 def convert_to_list(obj):
