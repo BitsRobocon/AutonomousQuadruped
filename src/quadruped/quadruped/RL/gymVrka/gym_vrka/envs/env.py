@@ -19,7 +19,7 @@ from gym import spaces
 from gym.utils import seeding
 from pkg_resources import parse_version
 import pybullet_utils.bullet_client as bullet_client
-from . import HeightField
+from .heightfield import HeightField
 from . import LieAlgebra as LA
 
 from .vrka_env_randomizer import VrkaEnvRandomizer

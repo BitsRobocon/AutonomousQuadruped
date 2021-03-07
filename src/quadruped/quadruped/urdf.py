@@ -6,7 +6,7 @@ phisicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath()) #used by loadURDF
 
 planeId = p.loadURDF("plane.urdf")
-quadID = p.loadURDF("./quadruped.urdf")
+quadID = p.loadURDF("./quad.urdf")
 GRAVITY = -9.8
 
 p.setGravity(0, 0, -10)

@@ -1,5 +1,5 @@
 import gym
-from envs.vrka_bezeir_env import vrkaBezierEnv
+from src.quadruped.quadruped.RL.gymVrka.gym_vrka.envs.vrka_bezeir_env  import vrkaBezierEnv
 
 env = gym.make('VrkaEnv-v1')
 env.reset()

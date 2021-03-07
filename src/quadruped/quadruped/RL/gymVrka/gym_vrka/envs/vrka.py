@@ -17,7 +17,7 @@ import re
 import numpy as np
 
 from . import motor
-from src.quadruped.quadruped import urdf as pybullet_data
+from src.quadruped.quadruped import quad as pybullet_data
 print(pybullet_data.getDataPath())
 from src.quadruped.quadruped.RL.bezier import IK 
 from quadruped.quadruped.RL.bezier import BezierPoints
