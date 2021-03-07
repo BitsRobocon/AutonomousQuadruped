@@ -14,11 +14,11 @@ from .vrka_env_randomizer import VrkaEnvRandomizer
 SENSOR_NOISE_STDDEV = vrka.SENSOR_NOISE_STDDEV
 
 # Register as OpenAI Gym Environment
-register(
-    id="VrkaMicroEnv-v1",
-    entry_point='vrkamicro.GymEnvs.vrka_bezier_env:vrkaBezierEnv',
-    max_episode_steps=1000,
-)
+# register(
+#     id="VrkaMicroEnv-v1",
+#     entry_point='vrkamicro.GymEnvs.vrka_bezier_env:vrkaBezierEnv',
+#     max_episode_steps=1000,
+# )
 
 
 class vrkaBezierEnv(vrkaGymEnv):

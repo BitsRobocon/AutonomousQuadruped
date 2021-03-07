@@ -20,9 +20,9 @@ from . import motor
 from src.quadruped.quadruped import urdf as pybullet_data
 print(pybullet_data.getDataPath())
 from src.quadruped.quadruped.RL.bezier import IK 
-# from quadruped.quadruped.RL.bezier import BezierPoints
+from quadruped.quadruped.RL.bezier import BezierPoints
 # from vrkamicro.Kinematics.SpotKinematics import SpotModel
-# from . import LieAlgebra as LA
+from . import LieAlgebra as LA
 
 INIT_POSITION = [0, 0, 0.25]
 INIT_RACK_POSITION = [0, 0, 1]
