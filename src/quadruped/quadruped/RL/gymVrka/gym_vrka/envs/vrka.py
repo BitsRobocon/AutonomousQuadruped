@@ -17,10 +17,11 @@ import re
 import numpy as np
 
 from . import motor
-from src.quadruped.quadruped import urdf as pybullet_data
-# print(pybullet_data.getDataPath())
-from src.quadruped.quadruped.RL.bezier import BezierPoints.legIK as IK
-from quadruped.quadruped.RL.bezier import BezierPoints
+from src.quadruped.quadruped import pybullet_data
+print(pybullet_data.getDataPath())
+# from .bezier import legIK as IK
+from .bezier import BezierPoints
+IK = BezierPoints.legIK
 # from vrkamicro.Kinematics.SpotKinematics import SpotModel
 from . import LieAlgebra as LA
 
