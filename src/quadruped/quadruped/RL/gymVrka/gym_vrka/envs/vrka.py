@@ -17,9 +17,9 @@ import re
 import numpy as np
 
 from . import motor
-from src.quadruped.quadruped import quad as pybullet_data
-print(pybullet_data.getDataPath())
-from src.quadruped.quadruped.RL.bezier import IK 
+from src.quadruped.quadruped import urdf as pybullet_data
+# print(pybullet_data.getDataPath())
+from src.quadruped.quadruped.RL.bezier import BezierPoints.legIK as IK
 from quadruped.quadruped.RL.bezier import BezierPoints
 # from vrkamicro.Kinematics.SpotKinematics import SpotModel
 from . import LieAlgebra as LA
@@ -371,13 +371,13 @@ class Vrka(object):
         if reload_urdf:
             if self._self_collision_enabled:
                 self.quadruped = self._pybullet_client.loadURDF(
-                    pybullet_data.getDataPath() + "/assets/urdf/vrka.urdf",
+                    pybullet_data.getDataPath() + "/vrka.urdf",
                     init_position,
                     useFixedBase=self._on_rack,
                     flags=self._pybullet_client.URDF_USE_SELF_COLLISION_EXCLUDE_PARENT)
             else:
                 self.quadruped = self._pybullet_client.loadURDF(
-                    pybullet_data.getDataPath() + "/assets/urdf/vrka.urdf",
+                    pybullet_data.getDataPath() + "/vrka.urdf",
                     init_position,
                     INIT_ORIENTATION,
                     useFixedBase=self._on_rack)
