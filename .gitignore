@@ -5,3 +5,5 @@
 **/log
 .vscode
 .DS_Store
+src/.DS_Store
+src/quadruped/.DS_Store

@@ -1,4 +1,4 @@
-""" Open Loop Controller for Spot Micro. Takes GUI params or uses default
+""" Open Loop Controller for Vrka. Takes GUI params or uses default
 """
 import numpy as np
 from random import shuffle
