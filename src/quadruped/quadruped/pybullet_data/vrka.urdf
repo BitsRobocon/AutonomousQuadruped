@@ -14,7 +14,7 @@ ixy="0" ixz="0" iyz="0"/>
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://quadruped/meshes/base_link_rsz.stl" />
+          filename="package://urdf/base_link_rsz.stl" />
       </geometry>
       <material
         name="White">
@@ -28,7 +28,7 @@ ixy="0" ixz="0" iyz="0"/>
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://quadruped/meshes/base_link_rsz.stl" />
+          filename="package://urdf/base_link_rsz.stl" />
       </geometry>
     </collision>
   </link>
@@ -45,7 +45,7 @@ ixy="0" ixz="0" iyz="0"/>
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://quadruped/meshes/leftbackleg_rsz.stl" />
+          filename="package://urdf/leftbackleg_rsz.stl" />
       </geometry>
       <material
         name="Black">
@@ -59,7 +59,7 @@ ixy="0" ixz="0" iyz="0"/>
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://quadruped/meshes/leftbackleg_rsz.stl" />
+          filename="package://urdf/leftbackleg_rsz.stl" />
       </geometry>
     </collision>
   </link>
@@ -92,7 +92,7 @@ ixy="0" ixz="0" iyz="0"/>
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://quadruped/meshes/leftfrontleg_rsz.stl" />
+          filename="package:///urdf/leftfrontleg_rsz.stl" />
       </geometry>
       <material
         name="Black">
@@ -106,7 +106,7 @@ ixy="0" ixz="0" iyz="0"/>
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://quadruped/meshes/leftfrontleg_rsz.stl" />
+          filename="package://urdf/leftfrontleg_rsz.stl" />
       </geometry>
     </collision>
   </link>
@@ -139,7 +139,7 @@ ixy="0" ixz="0" iyz="0"/>
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://quadruped/meshes/rightbackleg_rsz.stl" />
+          filename="package://urdf/rightbackleg_rsz.stl" />
       </geometry>
       <material
         name="Black">
@@ -153,7 +153,7 @@ ixy="0" ixz="0" iyz="0"/>
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://quadruped/meshes/rightbackleg_rsz.stl" />
+          filename="package://urdf/rightbackleg_rsz.stl" />
       </geometry>
     </collision>
   </link>
@@ -186,7 +186,7 @@ ixy="0" ixz="0" iyz="0"/>
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://quadruped/meshes/rightfrontleg_rsz.stl" />
+          filename="package://urdf/rightfrontleg_rsz.stl" />
       </geometry>
       <material
         name="Black">
@@ -200,7 +200,7 @@ ixy="0" ixz="0" iyz="0"/>
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://quadruped/meshes/rightfrontleg_rsz.stl" />
+          filename="package://urdf/rightfrontleg_rsz.stl" />
       </geometry>
     </collision>
   </link>
