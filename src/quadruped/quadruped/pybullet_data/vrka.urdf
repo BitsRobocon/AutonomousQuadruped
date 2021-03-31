@@ -64,7 +64,7 @@ ixy="0" ixz="0" iyz="0"/>
     </collision>
   </link>
   <joint
-    name="leftback_joint"
+    name="motor_back_left_upper_leg"
     type="revolute">
     <origin
         xyz="0.1 0.273 0.35"
@@ -111,7 +111,7 @@ ixy="0" ixz="0" iyz="0"/>
     </collision>
   </link>
   <joint
-    name="leftfront_joint"
+    name="motor_front_left_upper_leg"
     type="revolute">
     <origin
         xyz="0.1 -0.075 0.35"
@@ -158,7 +158,7 @@ ixy="0" ixz="0" iyz="0"/>
     </collision>
   </link>
   <joint
-    name="rightback_joint"
+    name="motor_back_right_upper_leg"
     type="revolute">
     <origin
         xyz="-0.1 0.273 0.35"
@@ -205,7 +205,7 @@ ixy="0" ixz="0" iyz="0"/>
     </collision>
   </link>
   <joint
-    name="rightfront_joint"
+    name="motor_front_right_upper_leg"
     type="revolute">
     <origin
         xyz="-0.1 -0.075 0.35"
@@ -223,7 +223,7 @@ ixy="0" ixz="0" iyz="0"/>
  <!-- Gazebo reference frame -->
   <transmission name="leftback_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="leftback_joint">
+    <joint name="motor_back_left_upper_leg">
       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="leftback_motor">
@@ -233,7 +233,7 @@ ixy="0" ixz="0" iyz="0"/>
   </transmission>
   <transmission name="leftfront_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="leftfront_joint">
+    <joint name="motor_front_left_upper_leg">
       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="leftfront_motor">
@@ -243,7 +243,7 @@ ixy="0" ixz="0" iyz="0"/>
   </transmission>
   <transmission name="rightback_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="rightback_joint">
+    <joint name="motor_back_right_upper_leg">
       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="rightback_motor">
@@ -253,7 +253,7 @@ ixy="0" ixz="0" iyz="0"/>
   </transmission>
   <transmission name="rightfront_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="rightfront_joint">
+    <joint name="motor_front_right_upper_leg">
       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="rightfront_motor">
@@ -267,7 +267,7 @@ ixy="0" ixz="0" iyz="0"/>
   </gazebo>
   <gazebo>
     <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
-      <jointName>leftback_joint, leftfront_joint, rightback_joint, rightfront_joint</jointName>
+      <jointName>motor_back_left_upper_leg, motor_front_left_upper_leg, motor_back_right_upper_leg, motor_front_right_upper_leg</jointName>
     </plugin>
   </gazebo>
 </robot>
