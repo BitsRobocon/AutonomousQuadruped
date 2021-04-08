@@ -433,7 +433,7 @@ ixy="0" ixz="0" iyz="0"/>
     </collision>
   </link>
   <joint
-    name="Right_back_femur_joint"
+    name="right_back_femur_joint"
     type="revolute">
     <origin
         xyz="0.0 0.0 0.0"
@@ -482,7 +482,7 @@ ixy="0" ixz="0" iyz="0"/>
     </collision>
   </link>
   <joint
-    name="Right_back_tibia_joint"
+    name="right_back_tibia_joint"
     type="revolute">
     <origin
         xyz="0.0 0.0 0.0"
@@ -582,7 +582,7 @@ ixy="0" ixz="0" iyz="0"/>
     </collision>
   </link>
   <joint
-    name="Right_front_femur_joint"
+    name="right_front_femur_joint"
     type="revolute">
     <origin
         xyz="0.0 0.0 0.0"
@@ -631,7 +631,7 @@ ixy="0" ixz="0" iyz="0"/>
     </collision>
   </link>
   <joint
-    name="Right_front_tibia_joint"
+    name="right_front_tibia_joint"
     type="revolute">
     <origin
         xyz="0.0 0.0 0.0"
