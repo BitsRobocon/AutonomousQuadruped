@@ -65,7 +65,7 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="-0.0525 -0.1125 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -91,7 +91,7 @@ ixy="0" ixz="0" iyz="0"/>
     name="left_back_hip_joint"
     type="revolute">
     <origin
-        xyz="0.0 0.0 0.35"
+        xyz="0.0525 0.1125 0.35"
         rpy="0 0 0" />
     <parent
       link="base_link" />
@@ -115,7 +115,7 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="-0.0525 -0.175 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -141,7 +141,7 @@ ixy="0" ixz="0" iyz="0"/>
     name="left_back_femur_joint"
     type="revolute">
     <origin
-        xyz="0.0 0.0 0.0"
+        xyz="0.0 0.0625 0.0"
         rpy="0 0 0" />
     <parent
       link="Left_back_shoulder" />
@@ -164,7 +164,7 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="-0.145 -0.267 0.160"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -190,7 +190,7 @@ ixy="0" ixz="0" iyz="0"/>
     name="left_back_tibia_joint"
     type="revolute">
     <origin
-        xyz="0.0 0.0 0.0"
+        xyz="0.0925 0.092 -0.160"
         rpy="0 0 0" />
     <parent
       link="Left_back_femur" />
@@ -202,7 +202,7 @@ ixy="0" ixz="0" iyz="0"/>
     <axis
       xyz="1 0 0" />
   </joint>
-
+  
 <!--Left front shoulder -->
   <link
     name="Left_front_shoulder">
@@ -213,7 +213,7 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="-0.0525 0.1125 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -239,7 +239,7 @@ ixy="0" ixz="0" iyz="0"/>
     name="left_front_hip_joint"
     type="revolute">
     <origin
-        xyz="0.0 0.0 0.35"
+        xyz="0.0525 -0.1125 0.35"
         rpy="0 0 0" />
     <parent
       link="base_link" />
@@ -262,7 +262,7 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="-0.0525 0.175 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -288,7 +288,7 @@ ixy="0" ixz="0" iyz="0"/>
     name="left_front_femur_joint"
     type="revolute">
     <origin
-        xyz="0.0 0.0 0.0"
+        xyz="0.0 -0.0625 0.0"
         rpy="0 0 0" />
     <parent
       link="Left_front_shoulder" />
@@ -311,7 +311,7 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="-0.145 0.083 0.160"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -337,7 +337,7 @@ ixy="0" ixz="0" iyz="0"/>
     name="left_front_tibia_joint"
     type="revolute">
     <origin
-        xyz="0.0 0.0 0.0"
+        xyz="0.0925 0.092 -0.160"
         rpy="0 0 0" />
     <parent
       link="Left_front_femur" />
@@ -361,7 +361,7 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="0.0525 -0.1125 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -387,7 +387,7 @@ ixy="0" ixz="0" iyz="0"/>
     name="right_back_hip_joint"
     type="revolute">
     <origin
-        xyz="0 0 0.35"
+        xyz="-0.0525 0.1125 0.35"
         rpy="0 0 0" />
     <parent
       link="base_link" />
@@ -410,7 +410,7 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="0.0525 -0.175 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -436,7 +436,7 @@ ixy="0" ixz="0" iyz="0"/>
     name="right_back_femur_joint"
     type="revolute">
     <origin
-        xyz="0.0 0.0 0.0"
+        xyz="0 0.0625 0"
         rpy="0 0 0" />
     <parent
       link="Right_back_shoulder" />
@@ -459,7 +459,7 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="0.145 -0.267 0.160"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -485,7 +485,7 @@ ixy="0" ixz="0" iyz="0"/>
     name="right_back_tibia_joint"
     type="revolute">
     <origin
-        xyz="0.0 0.0 0.0"
+        xyz="-0.0925 0.092 -0.160"
         rpy="0 0 0" />
     <parent
       link="Right_back_femur" />
@@ -510,7 +510,7 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="0.0525 0.1125 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -536,7 +536,7 @@ ixy="0" ixz="0" iyz="0"/>
     name="right_front_hip_joint"
     type="revolute">
     <origin
-        xyz="0 0 0.35"
+        xyz="-0.0525 -0.1125 0.35"
         rpy="0 0 0" />
     <parent
       link="base_link" />
@@ -559,7 +559,7 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="0.0525 0.175 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -585,7 +585,7 @@ ixy="0" ixz="0" iyz="0"/>
     name="right_front_femur_joint"
     type="revolute">
     <origin
-        xyz="0.0 0.0 0.0"
+        xyz="0.0 -0.0625 0.0"
         rpy="0 0 0" />
     <parent
       link="Right_front_shoulder" />
@@ -608,7 +608,7 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="0.145 0.083 0.160"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -634,7 +634,7 @@ ixy="0" ixz="0" iyz="0"/>
     name="right_front_tibia_joint"
     type="revolute">
     <origin
-        xyz="0.0 0.0 0.0"
+        xyz="-0.0925 0.092 -0.160"
         rpy="0 0 0" />
     <parent
       link="Right_front_femur" />
