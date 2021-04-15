@@ -1,0 +1,13 @@
+setup.cfg
+setup.py
+Vrka.egg-info/PKG-INFO
+Vrka.egg-info/SOURCES.txt
+Vrka.egg-info/dependency_links.txt
+Vrka.egg-info/entry_points.txt
+Vrka.egg-info/requires.txt
+Vrka.egg-info/top_level.txt
+Vrka.egg-info/zip-safe
+quadruped/__init__.py
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py

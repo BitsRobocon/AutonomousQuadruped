@@ -9,9 +9,6 @@ import time
 
 from opensimplex import OpenSimplex
 
-p.connect(p.GUI)
-p.setAdditionalSearchPath(pd.getDataPath())
-
 tmp = OpenSimplex()
 
 ## get these values as input when executing
@@ -22,14 +19,13 @@ exponent = 0.25
 
 numHeightfieldRows = 256
 numHeightfieldColumns = 256
-heightfieldData = [0]*numHeightfieldRows*numHeightfieldColumns
 
 # def all_random(x, y):
 #     return random.uniform(0, 0.05) # some error to correct later
 
 class HeightField():
     def __init__(self):
-        pass
+        self.heightfieldData = [0] * numHeightfieldRows * numHeightfieldColumns
 
     def multiple_octaves(octaves, start_amplitude):
         parameters = []
@@ -166,39 +162,80 @@ class HeightField():
         return values
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    hf = HeightField
-    value_func = hf.simplex()
+#     hf = HeightField
+#     value_func = hf.simplex()
+
+#     if style == 'octaves':
+#         # get octaves
+#         value_func = hf.multiple_octaves(octaves, amplitude)
+#     elif style == 'simplex':
+#         value_func = hf.simplex()
+#     elif style == 'power':
+#         # get exponent
+#         value_func = hf.power(exponent)
+#     elif style == 'scurve':
+#         value_func = hf.simple_scurve()
+#     elif style == 'plains':
+#         value_func = hf.plains()
+#     elif style == 'mountains':
+#         value_func = hf.mountains()  # to be fixed later use octaves instead
+#     elif style == 'combined':
+#         value_func = hf.combined()
+
+#     heightfieldData = hf.generate(value_func)
+
+#     terrainShape = p.createCollisionShape(shapeType = p.GEOM_HEIGHTFIELD, meshScale=[.05,.05,1], heightfieldTextureScaling=(numHeightfieldRows-1)/2, heightfieldData=heightfieldData, numHeightfieldRows=numHeightfieldRows, numHeightfieldColumns=numHeightfieldColumns)
+#     terrain  = p.createMultiBody(0, terrainShape)
+#     p.resetBasePositionAndOrientation(terrain,[0,0,0], [0,0,0,1])
+#     p.changeVisualShape(terrain, -1, rgbaColor=[1,1,1,1])
+
+#     p.configureDebugVisualizer(p.COV_ENABLE_RENDERING,1)
+#     p.setGravity(0, 0, -10)
+#     p.setRealTimeSimulation(1)
+
+#     while (p.isConnected()):
+#       keys = p.getKeyboardEvents()
+#       time.sleep(0.1)
+
+
+def UpdateHeightField(self):
+    #GEOM_CONCAVE_INTERNAL_EDGE may help avoid getting stuck at an internal (shared) edge of the triangle/heightfield.
+    #GEOM_CONCAVE_INTERNAL_EDGE is a bit slower to build though.
+    #flags = p.GEOM_CONCAVE_INTERNAL_EDGE
+
+    # env.pybullet_client.setAdditionalSearchPath(pd.getDataPath())
+    # env.pybullet_client.configureDebugVisualizer(env.pybullet_client.COV_ENABLE_RENDERING, 0)
+
+
+    value_func = self.simplex()
 
     if style == 'octaves':
         # get octaves
-        value_func = hf.multiple_octaves(octaves, amplitude)
+        value_func = self.multiple_octaves(octaves, amplitude)
     elif style == 'simplex':
-        value_func = hf.simplex()
+        value_func = self.simplex()
     elif style == 'power':
         # get exponent
-        value_func = hf.power(exponent)
+        value_func = self.power(exponent)
     elif style == 'scurve':
-        value_func = hf.simple_scurve()
+        value_func = self.simple_scurve()
     elif style == 'plains':
-        value_func = hf.plains()
+        value_func = self.plains()
     elif style == 'mountains':
-        value_func = hf.mountains()  # to be fixed later use octaves instead
+        value_func = self.mountains()  # to be fixed later use octaves instead
     elif style == 'combined':
-        value_func = hf.combined()
+        value_func = self.combined()
 
-    heightfieldData = hf.generate(value_func)
-
-    terrainShape = p.createCollisionShape(shapeType = p.GEOM_HEIGHTFIELD, meshScale=[.05,.05,1], heightfieldTextureScaling=(numHeightfieldRows-1)/2, heightfieldData=heightfieldData, numHeightfieldRows=numHeightfieldRows, numHeightfieldColumns=numHeightfieldColumns)
-    terrain  = p.createMultiBody(0, terrainShape)
-    p.resetBasePositionAndOrientation(terrain,[0,0,0], [0,0,0,1])
-    p.changeVisualShape(terrain, -1, rgbaColor=[1,1,1,1])
-
-    p.configureDebugVisualizer(p.COV_ENABLE_RENDERING,1)
-    p.setGravity(0, 0, -10)
-    p.setRealTimeSimulation(1)
-
-    while (p.isConnected()):
-      keys = p.getKeyboardEvents()
-      time.sleep(0.1)
+    self.heightfieldData = self.generate(value_func)
+    
+    flags = 0
+    self.terrainShape = p.createCollisionShape(
+                shapeType=p.GEOM_HEIGHTFIELD,
+                flags=flags,
+                meshScale=[.05, .05, 1],
+                heightfieldTextureScaling=(numHeightfieldRows - 1) / 2,
+                heightfieldData=self.heightfieldData,
+                numHeightfieldRows=numHeightfieldRows,
+                numHeightfieldColumns=numHeightfieldColumns)

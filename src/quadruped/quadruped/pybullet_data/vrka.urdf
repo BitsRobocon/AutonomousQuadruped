@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot
   name="quadruped">
+<!-- Main body structure =
+      Main chassis 
+      
+      Left back shoudler 
+      Left back femur 
+      Left back tibia 
+      
+      Left front shoulder 
+      Left front femur 
+      Left front tibia 
+      
+      Right back shoulder 
+      Right back femur 
+      Right back tibia
+      
+      Right front shoulder 
+      Right front femur 
+      Right front tibia         -->
+
+
+  <!-- Main Chassis without any sensors(battery omitted aswell) -->
   <link
     name="base_link">
 <inertial>
@@ -14,7 +35,7 @@ ixy="0" ixz="0" iyz="0"/>
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://urdf/base_link_rsz.stl" />
+          filename="package://quadruped/meshes/chassis_w_motors.stl" scale="0.001 0.001 0.001" />
       </geometry>
       <material
         name="White">
@@ -28,12 +49,15 @@ ixy="0" ixz="0" iyz="0"/>
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://urdf/base_link_rsz.stl" />
+          filename="package://quadruped/meshes/chassis_w_motors.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
+
+
+<!--Left back shoulder leg-->
   <link
-    name="leftback">
+    name="Left_back_shoulder">
 <inertial>
 <mass value="0.1"/>
 <inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
@@ -41,11 +65,11 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="-0.1 -0.283 -0.381"
+        xyz="-0.0525 -0.1125 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://urdf/leftbackleg_rsz.stl" />
+          filename="package://quadruped/meshes/LeftBackShoulder.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material
         name="Black">
@@ -55,32 +79,84 @@ ixy="0" ixz="0" iyz="0"/>
     </visual>
     <collision>
       <origin
-        xyz="-0.1 -0.283 -0.381"
+        xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://urdf/leftbackleg_rsz.stl" />
+          filename="package://quadruped/meshes/LeftBackShoulder.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
   <joint
-    name="leftback_joint"
+    name="left_back_hip_joint"
     type="revolute">
     <origin
-        xyz="0.1 0.273 0.35"
+        xyz="0.0525 0.1125 0.35"
         rpy="0 0 0" />
     <parent
       link="base_link" />
     <child
-      link="leftback" />
+      link="Left_back_shoulder" />
+    <limit 
+      lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
+    <dynamics damping="0.5"/>
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+  
+  <!--Left back upper leg-->
+  <link
+    name="Left_back_femur">
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="-0.0525 -0.175 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LeftBackFemur.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material
+        name="Black">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LeftBackFemur.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_back_femur_joint"
+    type="revolute">
+    <origin
+        xyz="0.0 0.0625 0.0"
+        rpy="0 0 0" />
+    <parent
+      link="Left_back_shoulder" />
+    <child
+      link="Left_back_femur" />
     <limit 
       lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
     <dynamics damping="0.5"/>
     <axis
       xyz="1 0 0" />
   </joint>
+
+  <!--Left back lower leg-->
   <link
-    name="leftfront">
+    name="Left_back_tibia">
 <inertial>
 <mass value="0.1"/>
 <inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
@@ -88,11 +164,11 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="-0.1 0.080 -0.35"
+        xyz="-0.145 -0.267 0.160"
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package:///urdf/leftfrontleg_rsz.stl" />
+          filename="package://quadruped/meshes/LeftBackTibia.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material
         name="Black">
@@ -102,32 +178,83 @@ ixy="0" ixz="0" iyz="0"/>
     </visual>
     <collision>
       <origin
-        xyz="-0.1 0.080 -0.35"
+        xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://urdf/leftfrontleg_rsz.stl" />
+          filename="package://quadruped/meshes/LeftBackTibia.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
   <joint
-    name="leftfront_joint"
+    name="left_back_tibia_joint"
     type="revolute">
     <origin
-        xyz="0.1 -0.075 0.35"
+        xyz="0.0925 0.092 -0.160"
+        rpy="0 0 0" />
+    <parent
+      link="Left_back_femur" />
+    <child
+      link="Left_back_tibia" />
+    <limit 
+      lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
+    <dynamics damping="0.5"/>
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  
+<!--Left front shoulder -->
+  <link
+    name="Left_front_shoulder">
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="-0.0525 0.1125 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LeftFrontShoulder.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material
+        name="Black">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LeftFrontShoulder.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_front_hip_joint"
+    type="revolute">
+    <origin
+        xyz="0.0525 -0.1125 0.35"
         rpy="0 0 0" />
     <parent
       link="base_link" />
     <child
-      link="leftfront" />
+      link="Left_front_shoulder" />
     <limit 
       lower="-0.7848" upper="0.78" effort="0.1" velocity="0.1"/>
     <dynamics damping="0.5"/>
     <axis
-      xyz="1 0 0" />
+      xyz="0 1 0" />
   </joint>
+
+  <!--Left Front upper leg -->
   <link
-    name="rightback">
+    name="Left_front_femur">
 <inertial>
 <mass value="0.1"/>
 <inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
@@ -135,11 +262,11 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0.1 -0.283 -0.35"
+        xyz="-0.0525 0.175 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://urdf/rightbackleg_rsz.stl" />
+          filename="package://quadruped/meshes/LeftFrontFemur.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material
         name="Black">
@@ -149,32 +276,34 @@ ixy="0" ixz="0" iyz="0"/>
     </visual>
     <collision>
       <origin
-        xyz="0.1 -0.283 -0.35"
+        xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://urdf/rightbackleg_rsz.stl" />
+          filename="package://quadruped/meshes/LeftFrontFemur.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
   <joint
-    name="rightback_joint"
+    name="left_front_femur_joint"
     type="revolute">
     <origin
-        xyz="-0.1 0.273 0.35"
+        xyz="0.0 -0.0625 0.0"
         rpy="0 0 0" />
     <parent
-      link="base_link" />
+      link="Left_front_shoulder" />
     <child
-      link="rightback" />
+      link="Left_front_femur" />
     <limit 
       lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
     <dynamics damping="0.5"/>
     <axis
       xyz="1 0 0" />
   </joint>
-  <link
-    name="rightfront">
+
+  <!--Left front lower leg-->
+    <link
+    name="Left_front_tibia">
 <inertial>
 <mass value="0.1"/>
 <inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
@@ -182,11 +311,11 @@ ixy="0" ixz="0" iyz="0"/>
 </inertial>
     <visual>
       <origin
-        xyz="0.1 0.080 -0.35"
+        xyz="-0.145 0.083 0.160"
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://urdf/rightfrontleg_rsz.stl" />
+          filename="package://quadruped/meshes/LeftFrontTibia.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material
         name="Black">
@@ -196,78 +325,462 @@ ixy="0" ixz="0" iyz="0"/>
     </visual>
     <collision>
       <origin
-        xyz="0.1 0.080 -0.35"
+        xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://urdf/rightfrontleg_rsz.stl" />
+          filename="package://quadruped/meshes/LeftFrontTibia.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
   <joint
-    name="rightfront_joint"
+    name="left_front_tibia_joint"
     type="revolute">
     <origin
-        xyz="-0.1 -0.075 0.35"
+        xyz="0.0925 0.092 -0.160"
         rpy="0 0 0" />
     <parent
-      link="base_link" />
+      link="Left_front_femur" />
     <child
-      link="rightfront" />
+      link="Left_front_tibia" />
     <limit 
       lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
     <dynamics damping="0.5"/>
     <axis
       xyz="1 0 0" />
   </joint>
+  
+
+  <!--Right back shoulder-->
+  <link
+    name="Right_back_shoulder">
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="0.0525 -0.1125 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RightBackShoulder.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material
+        name="Black">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RightBackShoulder.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_back_hip_joint"
+    type="revolute">
+    <origin
+        xyz="-0.0525 0.1125 0.35"
+        rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Right_back_shoulder" />
+    <limit 
+      lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
+    <dynamics damping="0.5"/>
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+<!--Right back upper leg-->
+<link
+    name="Right_back_femur">
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="0.0525 -0.175 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RightBackFemur.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material
+        name="Black">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RightBackFemur.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_back_femur_joint"
+    type="revolute">
+    <origin
+        xyz="0 0.0625 0"
+        rpy="0 0 0" />
+    <parent
+      link="Right_back_shoulder" />
+    <child
+      link="Right_back_femur" />
+    <limit 
+      lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
+    <dynamics damping="0.5"/>
+    <axis
+      xyz="1 0 0" />
+  </joint>
+
+  <!--Right back lower leg-->
+  <link
+    name="Right_back_tibia">
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="0.145 -0.267 0.160"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RightBackTibia.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material
+        name="Black">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RightBackTibia.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_back_tibia_joint"
+    type="revolute">
+    <origin
+        xyz="-0.0925 0.092 -0.160"
+        rpy="0 0 0" />
+    <parent
+      link="Right_back_femur" />
+    <child
+      link="Right_back_tibia" />
+    <limit 
+      lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
+    <dynamics damping="0.5"/>
+    <axis
+      xyz="1 0 0" />
+  </joint>
+
+
+
+  <!--Right front shoulder-->
+  <link
+    name="Right_front_shoulder">
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="0.0525 0.1125 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RightFrontShoulder.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material
+        name="Black">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RightFrontShoulder.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_front_hip_joint"
+    type="revolute">
+    <origin
+        xyz="-0.0525 -0.1125 0.35"
+        rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Right_front_shoulder" />
+    <limit 
+      lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
+    <dynamics damping="0.5"/>
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+  <!--Right front upper leg-->
+  <link
+    name="Right_front_femur">
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="0.0525 0.175 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RightFrontFemur.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material
+        name="Black">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RightFrontFemur.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_front_femur_joint"
+    type="revolute">
+    <origin
+        xyz="0.0 -0.0625 0.0"
+        rpy="0 0 0" />
+    <parent
+      link="Right_front_shoulder" />
+    <child
+      link="Right_front_femur" />
+    <limit 
+      lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
+    <dynamics damping="0.5"/>
+    <axis
+      xyz="1 0 0" />
+  </joint>
+
+  <!--Right front lower leg-->
+  <link
+    name="Right_front_tibia">
+<inertial>
+<mass value="0.1"/>
+<inertia ixx="5.1458e-5" iyy="5.1458e-5" izz="6.125e-5"
+ixy="0" ixz="0" iyz="0"/>
+</inertial>
+    <visual>
+      <origin
+        xyz="0.145 0.083 0.160"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RightFrontTibia.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material
+        name="Black">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RightFrontTibia.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_front_tibia_joint"
+    type="revolute">
+    <origin
+        xyz="-0.0925 0.092 -0.160"
+        rpy="0 0 0" />
+    <parent
+      link="Right_front_femur" />
+    <child
+      link="Right_front_tibia" />
+    <limit 
+      lower="-0.78" upper="0.78" effort="0.1" velocity="0.1"/>
+    <dynamics damping="0.5"/>
+    <axis
+      xyz="1 0 0" />
+  </joint>
+
+
+
  <!-- Gazebo reference frame -->
-  <transmission name="leftback_tran">
+  <transmission name="left_back_hip_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="leftback_joint">
+    <joint name="left_back_hip_joint">
       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
-    <actuator name="leftback_motor">
+    <actuator name="left_back_hip_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    </transmission>
+  <transmission name="left_back_femur_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_back_femur_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_back_femur_motor">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="leftfront_tran">
+    <transmission name="left_back_tibia_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="leftfront_joint">
+    <joint name="left_back_tibia_joint">
       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
-    <actuator name="leftfront_motor">
+    <actuator name="left_back_tibia_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    </transmission>
+
+
+  <transmission name="left_front_hip_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_front_hip_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_front_hip_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    </transmission>
+  <transmission name="left_front_femur_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_front_femur_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_front_femur_motor">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="rightback_tran">
+    <transmission name="left_front_tibia_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="rightback_joint">
+    <joint name="left_back_tibia_joint">
       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
-    <actuator name="rightback_motor">
+    <actuator name="left_front_tibia_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    </transmission>
+
+  <transmission name="right_back_hip_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_back_hip_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_back_hip_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    </transmission>
+  <transmission name="right_back_femur_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_back_femur_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_back_femur_motor">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <transmission name="rightfront_tran">
+    <transmission name="right_back_tibia_tran">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="rightfront_joint">
+    <joint name="right_back_tibia_joint">
       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
-    <actuator name="rightfront_motor">
+    <actuator name="right_back_tibia_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    </transmission>
+
+  <transmission name="right_front_hip_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_front_hip_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_front_hip_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    </transmission>
+  <transmission name="right_front_femur_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_front_femur_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_front_femur_motor">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+    <transmission name="right_front_tibia_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_front_tibia_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_front_tibia_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    </transmission>
 
   <gazebo>
     <plugin name="control" filename="libgazebo_ros_control.so"/>
   </gazebo>
   <gazebo>
     <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
-      <jointName>leftback_joint, leftfront_joint, rightback_joint, rightfront_joint</jointName>
+      <jointName>left_back_hip_joint,left_back_femur_joint,left_back_tibia_joint, left_front_hip_joint,left_front_femur_joint,left_front_tibia_joint, right_back_hip_joint,right_back_femur_joint,right_back_tibia_joint,right_front_hip_joint,right_front_femur_joint,right_front_tibia_joint</jointName>
     </plugin>
   </gazebo>
 </robot>

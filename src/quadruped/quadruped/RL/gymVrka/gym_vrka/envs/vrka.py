@@ -15,14 +15,12 @@ import copy
 import math
 import re
 import numpy as np
-
 from . import motor
 from src.quadruped.quadruped import pybullet_data
 print(pybullet_data.getDataPath())
 # from .bezier import legIK as IK
-from .bezier import BezierPoints
-IK = BezierPoints.legIK
-# from vrkamicro.Kinematics.SpotKinematics import SpotModel
+# from .bezier import BezierPoints
+from .Vrkakinematics import VrkaModel
 from . import LieAlgebra as LA
 
 INIT_POSITION = [0, 0, 0.25]
@@ -182,7 +180,7 @@ class Vrka(object):
         that its walking gait is clearer to visualize.
     """
         # vrka MODEL
-        self.vrka = IK()
+        self.vrka = VrkaModel()
         # Whether to include contact sensing
         self.contacts = contacts
         # Control Inputs

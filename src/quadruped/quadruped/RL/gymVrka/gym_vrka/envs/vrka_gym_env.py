@@ -44,7 +44,7 @@ vrka_URDF_VERSION_MAP = {DEFAULT_URDF_VERSION: vrka.Vrka}
 
 # Register as OpenAI Gym Environment
 # register(
-#     id="SpotMicroEnv-v0",
+#     id="VrkaEnv-v0",
 #     entry_point='vrkamicro.vrka_gym_env:vrkaGymEnv',
 #     max_episode_steps=1000,
 # )
