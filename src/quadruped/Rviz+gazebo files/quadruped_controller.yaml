@@ -1,8 +1,0 @@
-quadruped_controller:
-  type: "position_controllers/JointTrajectoryController"
-  joints:
-    - leftback_joint
-    - leftfront_joint
-    - rightback_joint
-    - rightfront_joint
-
