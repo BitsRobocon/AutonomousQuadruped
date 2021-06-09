@@ -14,84 +14,84 @@
   <gravity>true</gravity>
 </gazebo>
 
-<gazebo reference="Right_front_tibia">
+<gazebo reference="front_right_lower_leg">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
-<gazebo reference="Right_front_femur">
+<gazebo reference="front_right_upper_leg">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
-<gazebo reference="Right_front_shoulder">
+<gazebo reference="front_right_hip">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
-<gazebo reference="Left_front_tibia">
+<gazebo reference="front_left_lower_leg">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
-<gazebo reference="Left_front_femur">
+<gazebo reference="front_left_upper_leg">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
-<gazebo reference="Left_front_shoulder">
+<gazebo reference="front_left_hip">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
-<gazebo reference="Right_back_tibia">
+<gazebo reference="back_right_lower_leg">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
-<gazebo reference="Right_back_femur">
+<gazebo reference="back_right_upper_leg">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
-<gazebo reference="Right_back_shoulder">
+<gazebo reference="back_right_hip">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
-<gazebo reference="Left_back_tibia">
+<gazebo reference="back_left_lower_leg">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
-<gazebo reference="Left_back_femur">
+<gazebo reference="back_left_upper_leg">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
 
-<gazebo reference="Left_back_shoulder">
+<gazebo reference="back_left_hip">
   <material>${body_color}</material>
   <mu1>0.2</mu1>
   <mu2>0.2</mu2>
