@@ -29,7 +29,7 @@
 
 <!--RIGHT FRONT TIBIA -->
 
-<link name="Right_front_tibia">
+<link name="front_right_lower_leg">
   <inertial>
     <origin rpy="0 0 0" xyz="0.053354897837989246 0.007000373104040586 -0.08200412719516437"/>
     <mass value="0.05278821495344609"/>
@@ -50,10 +50,10 @@
   </collision>
 </link>
 
-<joint name="Rev30" type="revolute">
+<joint name="motor_front_right_lower_leg" type="revolute">
   <origin rpy="0 0 0" xyz="-0.160214 -0.079 -0.0925"/>
-  <parent link="Right_front_femur"/>
-  <child link="Right_front_tibia"/>
+  <parent link="front_right_upper_leg"/>
+  <child link="front_right_lower_leg"/>
     <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
   <axis xyz="0.0 1.0 0.0"/>
@@ -61,7 +61,7 @@
 
 <!--RIGHT FRONT FEMUR-->
 
-<link name="Right_front_femur">
+<link name="front_right_upper_leg">
   <inertial>
     <origin rpy="0 0 0" xyz="-0.02476252170408491 -0.051129281827133444 -0.014293871741900166"/>
     <mass value="1.0856839376243592"/>
@@ -82,17 +82,17 @@
   </collision>
 </link>
 
-<joint name="Rev31" type="revolute">
+<joint name="motor_front_right_upper_leg" type="revolute">
   <origin rpy="0 0 0" xyz="0.055 -0.0185 0.0"/>
-  <parent link="Right_front_shoulder"/>
-  <child link="Right_front_femur"/>
+  <parent link="front_right_hip"/>
+  <child link="front_right_upper_leg"/>
     <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
   <axis xyz="0.0 1.0 0.0"/>
 </joint>
 
 <!--RIGHT FRONT SHOULDER -->
-<link name="Right_front_shoulder">
+<link name="front_right_hip">
   <inertial>
     <origin rpy="0 0 0" xyz="0.055238677027354355 -0.003594806404584705 -2.752506777503605e-07"/>
     <mass value="0.29461843575635877"/>
@@ -113,17 +113,17 @@
   </collision>
 </link>
 
-<joint name="Rev32" type="revolute">
+<joint name="motor_front_right_hip" type="revolute">
   <origin rpy="0 0 0" xyz="0.140669 -0.094545 0.281084"/>
   <parent link="base_link"/>
-  <child link="Right_front_shoulder"/>
+  <child link="front_right_hip"/>
     <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
   <axis xyz="1.0 -0.0 0.0"/>
 </joint>
 
 <!--LEFT FRONT TIBIA -->
-<link name="Left_front_tibia">
+<link name="front_left_lower_leg">
   <inertial>
     <origin rpy="0 0 0" xyz="0.05335571926429739 -0.007000189913617491 -0.08200338753311157"/>
     <mass value="0.052788214953446086"/>
@@ -144,10 +144,10 @@
   </collision>
 </link>
 
-<joint name="Rev33" type="revolute">
+<joint name="motor_front_left_lower_leg" type="revolute">
   <origin rpy="0 0 0" xyz="-0.160215 0.079 -0.0925"/>
-  <parent link="Left_front_femur"/>
-  <child link="Left_front_tibia"/>
+  <parent link="front_left_upper_leg"/>
+  <child link="front_left_lower_leg"/>
     <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
   <axis xyz="0.0 -1.0 -0.0"/>
@@ -156,7 +156,7 @@
 
 <!--LEFT FRONT FEMUR -->
 
-<link name="Left_front_femur">
+<link name="front_left_upper_leg">
   <inertial>
     <origin rpy="0 0 0" xyz="-0.02475988057481357 0.05112942909052748 -0.014298015948625065"/>
     <mass value="1.0856839376243592"/>
@@ -177,10 +177,10 @@
   </collision>
 </link>
 
-<joint name="Rev34" type="revolute">
+<joint name="motor_front_left_upper_leg" type="revolute">
   <origin rpy="0 0 0" xyz="0.055 0.0185 0.0"/>
-  <parent link="Left_front_shoulder"/>
-  <child link="Left_front_femur"/>
+  <parent link="front_left_hip"/>
+  <child link="front_left_upper_leg"/>
     <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
   <axis xyz="-0.0 -1.0 -0.0"/>
@@ -189,7 +189,7 @@
 
 <!--LEFT FRONT SHOULDER-->
 
-<link name="Left_front_shoulder">
+<link name="front_left_hip">
   <inertial>
     <origin rpy="0 0 0" xyz="0.05523849845367643 0.0035949536679779626 3.663911247731022e-07"/>
     <mass value="0.29461843575635877"/>
@@ -210,10 +210,10 @@
   </collision>
 </link>
 
-<joint name="Rev35" type="revolute">
+<joint name="motor_front_left_hip" type="revolute">
   <origin rpy="0 0 0" xyz="0.140707 0.013252 0.27963"/>
   <parent link="base_link"/>
-  <child link="Left_front_shoulder"/>
+  <child link="front_left_hip"/>
     <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
   <axis xyz="1.0 0.0 0.0"/>
@@ -223,7 +223,7 @@
 
 <!--RIGHT BACK TIBIA-->
 
-<link name="Right_back_tibia">
+<link name="back_right_lower_leg">
   <inertial>
     <origin rpy="0 0 0" xyz="0.05335489783801062 0.0070003731040372275 -0.08200412719516668"/>
     <mass value="0.05278821495344609"/>
@@ -244,10 +244,10 @@
   </collision>
 </link>
 
-<joint name="Rev36" type="revolute">
+<joint name="motor_back_right_lower_leg" type="revolute">
   <origin rpy="0 0 0" xyz="-0.160214 -0.079 -0.0925"/>
-  <parent link="Right_back_femur"/>
-  <child link="Right_back_tibia"/>
+  <parent link="back_right_upper_leg"/>
+  <child link="back_right_lower_leg"/>
   <axis xyz="-0.0 1.0 -0.0"/>
     <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
@@ -255,7 +255,7 @@
 
 
 <!--RIGHT BACK FEMUR -->
-<link name="Right_back_femur">
+<link name="back_right_upper_leg">
   <inertial>
     <origin rpy="0 0 0" xyz="-0.0247625217040503 -0.05112928182713197 -0.014293871741910102"/>
     <mass value="1.0856839376243592"/>
@@ -276,17 +276,17 @@
   </collision>
 </link>
 
-<joint name="Rev37" type="revolute">
+<joint name="motor_back_right_upper_leg" type="revolute">
   <origin rpy="0 0 0" xyz="-0.055 -0.0185 0.0"/>
-  <parent link="Right_back_shoulder"/>
-  <child link="Right_back_femur"/>
+  <parent link="back_right_hip"/>
+  <child link="back_right_upper_leg"/>
     <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
   <axis xyz="0.0 1.0 -0.0"/>
 </joint>
 
 <!--RIGHT BACK SHOULDER-->
-<link name="Right_back_shoulder">
+<link name="back_right_hip">
   <inertial>
     <origin rpy="0 0 0" xyz="-0.055238140708366607 -0.0035948064045824013 -3.732709291659475e-07"/>
     <mass value="0.29461843575635877"/>
@@ -307,10 +307,10 @@
   </collision>
 </link>
 
-<joint name="Rev38" type="revolute">
+<joint name="motor_back_right_hip" type="revolute">
   <origin rpy="0 0 0" xyz="-0.100969 -0.094545 0.281084"/>
   <parent link="base_link"/>
-  <child link="Right_back_shoulder"/>
+  <child link="back_right_hip"/>
     <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
   <axis xyz="1.0 0.0 0.0"/>
@@ -318,7 +318,7 @@
 
 
 <!--LEFT BACK TIBIA-->
-<link name="Left_back_tibia">
+<link name="back_left_lower_leg">
   <inertial>
     <origin rpy="0 0 0" xyz="0.053354897838008675 -0.006999626895962993 -0.08200412719516677"/>
     <mass value="0.05278821495344609"/>
@@ -339,10 +339,10 @@
   </collision>
 </link>
 
-<joint name="Rev39" type="revolute">
+<joint name="motor_back_left_lower_leg" type="revolute">
   <origin rpy="0 0 0" xyz="-0.160214 0.079 -0.0925"/>
-  <parent link="Left_back_femur"/>
-  <child link="Left_back_tibia"/>
+  <parent link="back_left_upper_leg"/>
+  <child link="back_left_lower_leg"/>
   <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
   <axis xyz="0.0 -1.0 -0.0"/>
@@ -350,7 +350,7 @@
 
 <!--LEFT BACK FEMUR-->
 
-<link name="Left_back_femur">
+<link name="back_left_upper_leg">
   <inertial>
     <origin rpy="0 0 0" xyz="-0.024759702001102196 0.05112999210818306 -0.01429875561068078"/>
     <mass value="1.0856839376243592"/>
@@ -371,17 +371,17 @@
   </collision>
 </link>
 
-<joint name="Rev40" type="revolute">
+<joint name="motor_back_left_upper_leg" type="revolute">
   <origin rpy="0 0 0" xyz="-0.055 0.0185 0.0"/>
-  <parent link="Left_back_shoulder"/>
-  <child link="Left_back_femur"/>
+  <parent link="back_left_hip"/>
+  <child link="back_left_upper_leg"/>
   <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
   <axis xyz="0.0 -1.0 0.0"/>
 </joint>
 
 <!--LEFT BACK SHOULDER-->
-<link name="Left_back_shoulder">
+<link name="back_left_hip">
   <inertial>
     <origin rpy="0 0 0" xyz="-0.055238140708366884 0.003595516685633909 -2.7525069190570406e-07"/>
     <mass value="0.29461843575635877"/>
@@ -402,13 +402,14 @@
   </collision>
 </link>
 
-<joint name="Rev41" type="revolute">
+<joint name="motor_back_left_hip" type="revolute">
   <origin rpy="0 0 0" xyz="-0.101049 0.013455 0.281084"/>
   <parent link="base_link"/>
-  <child link="Left_back_shoulder"/>
+  <child link="back_left_hip"/>
   <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
   <axis xyz="1.0 0.0 0.0"/>
 </joint>
 
 </robot>
+
