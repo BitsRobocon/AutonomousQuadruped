@@ -50,6 +50,7 @@
   </collision>
 </link>
 
+
 <joint name="motor_front_right_lower_leg" type="revolute">
   <origin rpy="0 0 0" xyz="-0.160214 -0.079 -0.0925"/>
   <parent link="front_right_upper_leg"/>
@@ -57,6 +58,37 @@
     <limit lower="-0.78" upper="0.78" effort="100" velocity="0.1"/>
   <dynamics damping="0.5"/>
   <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<!--right front toe-->
+<link name="front_right_toe">
+  <inertial>
+    <origin rpy="0 -2.1 0 " xyz="0.1 0.009  -0.18"/>
+    <mass value="0.05278821495344609"/>
+    <inertia ixx="4.99e-6" ixy="-0.0" ixz="0.00" iyy="3.99e-6" iyz="0.0" izz="1.99e-6"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 -2.100000 0" xyz="0.11268 -7.955e-3 -0.073584"/>
+    <geometry>
+      <mesh filename="package://vrka_description/meshes/toe_cap1.stl" scale="0.0001 0.0001 0.0001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://vrka_description/meshes/toe_cap1.stl" scale="0.0001 0.0001 0.0001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="motor_front_right_toe" type="revolute">
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <parent link="front_right_lower_leg"/>
+  <child link="front_right_toe"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+    <limit lower="0" upper="0" effort="100" velocity="0.1"/>
+  <dynamics damping="0.5"/>
 </joint>
 
 <!--RIGHT FRONT FEMUR-->
@@ -152,6 +184,38 @@
   <dynamics damping="0.5"/>
   <axis xyz="0.0 -1.0 -0.0"/>
 </joint>
+
+<!--Left front toe-->
+<link name="front_left_toe">
+  <inertial>
+    <origin rpy="0 -2.1 0 " xyz="0.1 -5.3e-3  -0.18"/>
+    <mass value="0.05278821495344609"/>
+    <inertia ixx="4.99e-6" ixy="-0.0" ixz="0.00" iyy="3.99e-6" iyz="0.0" izz="1.99e-6"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 -2.100000 0" xyz="0.11268 -0.02255 -0.073584"/>
+    <geometry>
+      <mesh filename="package://vrka_description/meshes/toe_cap1.stl" scale="0.0001 0.0001 0.0001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://vrka_description/meshes/toe_cap1.stl" scale="0.0001 0.0001 0.0001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="motor_front_left_toe" type="revolute">
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <parent link="front_left_lower_leg"/>
+  <child link="front_left_toe"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+    <limit lower="0" upper="0" effort="100" velocity="0.1"/>
+  <dynamics damping="0.5"/>
+</joint>
+
 
 
 <!--LEFT FRONT FEMUR -->
@@ -253,6 +317,37 @@
   <dynamics damping="0.5"/>
 </joint>
 
+<!--right back toe test -->
+<link name="back_right_toe">
+  <inertial>
+    <origin rpy="0 -2.1 0 " xyz="0.1 0.009  -0.18"/>
+    <mass value="0.05278821495344609"/>
+    <inertia ixx="4.99e-6" ixy="-0.0" ixz="0.00" iyy="3.99e-6" iyz="0.0" izz="1.99e-6"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 -2.100000 0" xyz="0.113183 -7.955e-3 -0.073584"/>
+    <geometry>
+      <mesh filename="package://vrka_description/meshes/toe_cap1.stl" scale="0.0001 0.0001 0.0001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://vrka_description/meshes/toe_cap1.stl" scale="0.0001 0.0001 0.0001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="motor_back_right_toe" type="revolute">
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <parent link="back_right_lower_leg"/>
+  <child link="back_right_toe"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+    <limit lower="0" upper="0" effort="100" velocity="0.1"/>
+  <dynamics damping="0.5"/>
+</joint>
+
 
 <!--RIGHT BACK FEMUR -->
 <link name="back_right_upper_leg">
@@ -348,6 +443,38 @@
   <axis xyz="0.0 -1.0 -0.0"/>
 </joint>
 
+<!--Left back toe-->
+<link name="back_left_toe">
+  <inertial>
+    <origin rpy="0 -2.1 0 " xyz="0.1 -5.3e-3  -0.18"/>
+    <mass value="0.05278821495344609"/>
+    <inertia ixx="4.99e-6" ixy="-0.0" ixz="0.00" iyy="3.99e-6" iyz="0.0" izz="1.99e-6"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 -2.100000 0" xyz="0.113183 -0.02255 -0.073584"/>
+    <geometry>
+      <mesh filename="package://vrka_description/meshes/toe_cap1.stl" scale="0.0001 0.0001 0.0001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://vrka_description/meshes/toe_cap1.stl" scale="0.0001 0.0001 0.0001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="motor_back_left_toe" type="revolute">
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <parent link="back_left_lower_leg"/>
+  <child link="back_left_toe"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+    <limit lower="0" upper="0" effort="100" velocity="0.1"/>
+  <dynamics damping="0.5"/>
+</joint>
+
+
 <!--LEFT BACK FEMUR-->
 
 <link name="back_left_upper_leg">
@@ -412,4 +539,3 @@
 </joint>
 
 </robot>
-
