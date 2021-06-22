@@ -97,5 +97,37 @@
   <mu2>0.2</mu2>
   <selfCollide>true</selfCollide>
 </gazebo>
+<!--TOES-->
+<!--right back toe-->
+<gazebo reference="back_right_toe">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<!--left back toe-->
+<gazebo reference="back_leftt_toe">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<!--left front toe-->
+<gazebo reference="front_left_toe">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<!--right front toe-->
+<gazebo reference="front_right_toe">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
 
 </robot>
