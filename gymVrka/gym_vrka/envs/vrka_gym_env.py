@@ -20,11 +20,11 @@ from gym.utils import seeding
 from pkg_resources import parse_version
 import pybullet_utils.bullet_client as bullet_client
 from gym.envs.registration import register
-from .heightfield import HeightField
-from . import LieAlgebra as LA
-from .vrka_env_randomizer import VrkaEnvRandomizer
-from . import vrka
-from .openloopcontroller import BezierStepper
+from heightfield2 import HeightField
+import LieAlgebra as LA
+from vrka_env_randomizer import VrkaEnvRandomizer
+import vrka
+from openloopcontroller import BezierStepper
 
 NUM_SUBSTEPS = 5
 NUM_MOTORS = 12
@@ -42,12 +42,12 @@ NUM_SIMULATION_ITERATION_STEPS = 1000
 
 vrka_URDF_VERSION_MAP = {DEFAULT_URDF_VERSION: vrka.Vrka}
 
-# Register as OpenAI Gym Environment
-# register(
-#     id="VrkaEnv-v0",
-#     entry_point='vrkamicro.vrka_gym_env:vrkaGymEnv',
-#     max_episode_steps=1000,
-# )
+#Register as OpenAI Gym Environment
+register(
+    id="VrkaEnv-v0",
+    entry_point='vrka_gym_env:vrkaGymEnv',
+    max_episode_steps=1000,
+)
 
 
 def convert_to_list(obj):
@@ -109,7 +109,7 @@ class vrkaGymEnv(gym.Env):
                  desired_rate=0.0,
                  lateral=False,
                  draw_foot_path=False,
-                 height_field=False,
+                 height_field=True,
                  height_field_iters=2,
                  AutoStepper=False,
                  contacts=True):
@@ -286,7 +286,7 @@ class vrkaGymEnv(gym.Env):
         if self.height_field:
             # Do 3x for extra roughness
             for i in range(height_field_iters):
-                self.hf._generate_field(self)
+                self.hf._generate_field(self,'simplex')
 
     def set_env_randomizer(self, env_randomizer):
         self._env_randomizer = env_randomizer
@@ -312,14 +312,14 @@ class vrkaGymEnv(gym.Env):
             self._pybullet_client.setPhysicsEngineParameter(
                 numSolverIterations=int(self._num_bullet_solver_iterations))
             self._pybullet_client.setTimeStep(self._time_step)
-            self._ground_id = self._pybullet_client.loadURDF("%s/plane.urdf" %
-                                                             self._urdf_root)
-            if self._reflection:
-                self._pybullet_client.changeVisualShape(
-                    self._ground_id, -1, rgbaColor=[1, 1, 1, 0.8])
-                self._pybullet_client.configureDebugVisualizer(
-                    self._pybullet_client.COV_ENABLE_PLANAR_REFLECTION,
-                    self._ground_id)
+            # self._ground_id = self._pybullet_client.loadURDF("%s/plane.urdf" %
+            #                                                  self._urdf_root)
+            # if self._reflection:
+            #     self._pybullet_client.changeVisualShape(
+            #         self._ground_id, -1, rgbaColor=[1, 1, 1, 0.8])
+            #     self._pybullet_client.configureDebugVisualizer(
+            #         self._pybullet_client.COV_ENABLE_PLANAR_REFLECTION,
+            #         self._ground_id)
             self._pybullet_client.setGravity(0, 0, -9.81)
             acc_motor = self._accurate_motor_model_enabled
             motor_protect = self._motor_overheat_protection

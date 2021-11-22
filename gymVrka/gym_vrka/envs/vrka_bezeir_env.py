@@ -6,10 +6,10 @@ import gym
 import numpy as np
 import pybullet_data
 from gym import spaces
-from . import vrka
+import vrka
 from gym.envs.registration import register
-from .vrka_gym_env import vrkaGymEnv
-from .vrka_env_randomizer import VrkaEnvRandomizer
+from vrka_gym_env import vrkaGymEnv
+from vrka_env_randomizer import VrkaEnvRandomizer
 
 SENSOR_NOISE_STDDEV = vrka.SENSOR_NOISE_STDDEV
 

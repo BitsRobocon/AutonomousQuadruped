@@ -1,0 +1,183 @@
+<?xml version="1.0" ?>
+<robot name="vrka" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<transmission name="motor_front_right_lower_leg_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_front_right_lower_leg">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_front_right_lower_leg_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_front_right_upper_leg_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_front_right_upper_leg">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_front_right_upper_leg_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_front_right_hip_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_front_right_hip">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_front_right_hip_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_front_left_lower_leg_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_front_left_lower_leg">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_front_left_lower_leg_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_front_left_upper_leg_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_front_left_upper_leg">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_front_left_upper_leg_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_front_left_hip_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_front_left_hip">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_front_left_hip_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_back_right_lower_leg_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_back_right_lower_leg">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_back_right_lower_leg_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_back_right_upper_leg_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_back_right_upper_leg">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_back_right_upper_leg_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_back_right_hip_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_back_right_hip">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_back_right_hip_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_back_left_lower_leg_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_back_left_lower_leg">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_back_left_lower_leg_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_back_left_upper_leg_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_back_left_upper_leg">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_back_left_upper_leg_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="motor_back_left_hip_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_back_left_hip">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_back_left_hip_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<!--Toes-->
+<!--right back toe-->
+<transmission name="motor_back_right_toe_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_back_right_toe">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_back_right_toe_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+<!--left back toe-->
+<transmission name="motor_back_left_toe_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_back_left_toe">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_back_leftt_toe_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+<!--left front toe-->
+<transmission name="motor_front_left_toe_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_front_left_toe">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_front_left_toe_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+<!--right front toe-->
+<transmission name="motor_front_right_toe_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="motor_front_right_toe">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_front_right_toe_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+
+</robot>

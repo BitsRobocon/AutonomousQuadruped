@@ -1,5 +1,5 @@
 import numpy as np
-from .LieAlgebra import TransToRp
+from LieAlgebra import TransToRp
 import copy
 
 STANCE = 0

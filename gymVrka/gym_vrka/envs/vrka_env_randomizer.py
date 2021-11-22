@@ -10,7 +10,7 @@ Example: minitaur_env_randomizer.py
 https://github.com/bulletphysics/bullet3/blob/master/examples/pybullet/gym/pybullet_envs/minitaur/envs/env_randomizers/minitaur_env_randomizer.py
 """
 import numpy as np
-from . import env_randomizer_base
+import env_randomizer_base
 
 # Relative range.
 vrka_BASE_MASS_ERROR_RANGE = (-0.2, 0.2)  # 0.2 means 20%

@@ -15,15 +15,15 @@ import copy
 import math
 import re
 import numpy as np
-from . import motor
+import motor
 import vrka_description as pybullet_data
 print(pybullet_data.getDataPath())
 # from .bezier import legIK as IK
 # from .bezier import BezierPoints
-from .Vrkakinematics import VrkaModel
-from . import LieAlgebra as LA
+from Vrkakinematics import VrkaModel
+import LieAlgebra as LA
 
-INIT_POSITION = [0, 0, 0.25]
+INIT_POSITION = [0, 0, 1.75]
 INIT_RACK_POSITION = [0, 0, 1]
 # NOTE: URDF IS FACING THE WRONG WAY
 # TEMP FIX

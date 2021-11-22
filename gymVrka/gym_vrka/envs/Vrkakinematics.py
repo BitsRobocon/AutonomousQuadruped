@@ -1,6 +1,6 @@
 import numpy as np
-from .LegKinematics import LegIK
-from .LieAlgebra import RpToTrans, TransToRp, TransInv, RPY, TransformVector
+from LegKinematics import LegIK
+from LieAlgebra import RpToTrans, TransToRp, TransInv, RPY, TransformVector
 from collections import OrderedDict
 
 
